@@ -1,0 +1,77 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Firing Schedule Visualizer</title>
+    <link rel="stylesheet" href="css/site.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body class="h-100 d-flex flex-column h-100">
+    <div class="container">
+        <h1>Firing Schedule Visualizer</h1>
+        <div>
+            <label for="scheduleType">Schedule Type:</label>
+            <select id="scheduleType">
+                <option value="bisque">Bisque</option>
+                <option value="glaze">Glaze</option>
+            </select>
+        </div>
+        <form id="scheduleForm">
+            <label for="startTime">Start Time (hh:mm):</label>
+            <input type="time" id="startTime" name="startTime" required>
+
+            <div id="segments">
+                <!-- Initial segments -->
+                <div class="segment">
+                    <label>Ramp Rate (°F/hour):</label>
+                    <input type="number" class="rampRate" value="80" required>
+                    <label>Target Temperature (°F):</label>
+                    <input type="number" class="targetTemp" value="250" required>
+                </div>
+                <div class="segment">
+                    <label>Ramp Rate (°F/hour):</label>
+                    <input type="number" class="rampRate" value="200" required>
+                    <label>Target Temperature (°F):</label>
+                    <input type="number" class="targetTemp" value="1000" required>
+                </div>
+                <div class="segment">
+                    <label>Ramp Rate (°F/hour):</label>
+                    <input type="number" class="rampRate" value="100" required>
+                    <label>Target Temperature (°F):</label>
+                    <input type="number" class="targetTemp" value="1100" required>
+                </div>
+                <div class="segment">
+                    <label>Ramp Rate (°F/hour):</label>
+                    <input type="number" class="rampRate" value="180" required>
+                    <label>Target Temperature (°F):</label>
+                    <input type="number" class="targetTemp" value="1695" required>
+                </div>
+                <div class="segment">
+                    <label>Ramp Rate (°F/hour):</label>
+                    <input type="number" class="rampRate" value="80" required>
+                    <label>Target Temperature (°F):</label>
+                    <input type="number" class="targetTemp" value="1945" required>
+                </div>
+            </div>
+
+            <button type="button" id="addSegment">Add Segment</button>
+            <button type="button" id="removeSegment">Remove Segment</button>
+
+            <button type="submit">Visualize</button>
+        </form>
+
+        <h2>Total Time: <span id="totalTime">0</span> hours</h2>
+
+        <canvas id="tempChart"></canvas>
+    </div>
+    <script src="js/site.js"></script>
+</body>
+</html>
