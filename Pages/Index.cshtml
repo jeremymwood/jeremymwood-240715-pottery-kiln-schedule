@@ -10,67 +10,46 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Firing Schedule Visualizer</title>
-    <link rel="stylesheet" href="css/site.css">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <style>
+        #chart-container {
+            position: relative;
+            width: 100%;
+            height: 400px;
+        }
+    </style>
 </head>
 <body class="h-100 d-flex flex-column h-100">
-    <div class="container">
+    <div class="container mt-4">
         <h1>Firing Schedule Visualizer</h1>
-        <div>
+        <div class="form-group">
             <label for="scheduleType">Schedule Type:</label>
-            <select id="scheduleType">
+            <select class="form-control" id="scheduleType">
                 <option value="bisque">Bisque</option>
                 <option value="glaze">Glaze</option>
             </select>
         </div>
         <form id="scheduleForm">
-            <label for="startTime">Start Time (hh:mm):</label>
-            <input type="time" id="startTime" name="startTime" required>
-
-            <div id="segments">
-                <!-- Initial segments -->
-                <div class="segment">
-                    <label>Ramp Rate (°F/hour):</label>
-                    <input type="number" class="rampRate" value="80" required>
-                    <label>Target Temperature (°F):</label>
-                    <input type="number" class="targetTemp" value="250" required>
-                </div>
-                <div class="segment">
-                    <label>Ramp Rate (°F/hour):</label>
-                    <input type="number" class="rampRate" value="200" required>
-                    <label>Target Temperature (°F):</label>
-                    <input type="number" class="targetTemp" value="1000" required>
-                </div>
-                <div class="segment">
-                    <label>Ramp Rate (°F/hour):</label>
-                    <input type="number" class="rampRate" value="100" required>
-                    <label>Target Temperature (°F):</label>
-                    <input type="number" class="targetTemp" value="1100" required>
-                </div>
-                <div class="segment">
-                    <label>Ramp Rate (°F/hour):</label>
-                    <input type="number" class="rampRate" value="180" required>
-                    <label>Target Temperature (°F):</label>
-                    <input type="number" class="targetTemp" value="1695" required>
-                </div>
-                <div class="segment">
-                    <label>Ramp Rate (°F/hour):</label>
-                    <input type="number" class="rampRate" value="80" required>
-                    <label>Target Temperature (°F):</label>
-                    <input type="number" class="targetTemp" value="1945" required>
-                </div>
+            <div class="form-group">
+                <label for="startTime">Start Time (hh:mm):</label>
+                <input type="time" class="form-control" id="startTime" name="startTime" value="07:00" required>
             </div>
-
-            <button type="button" id="addSegment">Add Segment</button>
-            <button type="button" id="removeSegment">Remove Segment</button>
-
-            <button type="submit">Visualize</button>
+            <div class="form-group">
+                <label for="initialTemp">Initial Temperature (°F):</label>
+                <input type="number" class="form-control" id="initialTemp" name="initialTemp" value="70" required>
+            </div>
+            <div id="segments" class="mb-3">
+                <!-- Initial segments will be dynamically added here -->
+            </div>
         </form>
-
+        <div class="text-center">
+            <button type="button" class="btn btn-primary" id="addSegment">Add Segment</button>
+        </div>
         <h2>Total Time: <span id="totalTime">0</span> hours</h2>
-
-        <canvas id="tempChart"></canvas>
+        <div id="chart-container">
+            <div id="chart"></div>
+        </div>
     </div>
     <script src="js/site.js"></script>
 </body>
