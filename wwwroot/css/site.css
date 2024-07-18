@@ -17,6 +17,10 @@ html {
   min-height: 100%;
 }
 
+header, footer {
+    width: 100%;
+}
+
 body {
     font-family: Arial, sans-serif;
     display: flex;

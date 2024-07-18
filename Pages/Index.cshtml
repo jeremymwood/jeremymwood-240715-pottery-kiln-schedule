@@ -6,54 +6,53 @@
 
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Firing Schedule Visualizer</title>
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-    <style>
-        #chart-container {
-            position: relative;
-            width: 100%;
-            height: 400px;
-        }
-    </style>
-</head>
-<body class="h-100 d-flex flex-column h-100">
-    <div class="container mt-4">
-        <h1>Firing Schedule Visualizer</h1>
-        
-        <form id="scheduleForm" class="d-flex flex-row">
-            <div class="d-flex w-50 me-2 flex-column">
-                <div class="form-group">
-                    <label for="scheduleType">Schedule Type:</label>
-                    <select class="form-control" id="scheduleType">
-                        <option value="bisque">Bisque</option>
-                        <option value="glaze">Glaze</option>
-                    </select>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Firing Schedule Visualizer</title>
+        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+        <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    </head>
+    <body class="h-100 d-flex flex-column">
+        <div class="container h-100">
+            <h1>Firing Schedule Visualizer</h1>
+            <form id="scheduleForm" class="d-flex flex-row">
+                <div id="segments" class="mb-3 w-50">
+                    <div class="segmentTitles form-row mb-2">
+                        <div class="col-md-4 offset-md-2">
+                            Ramp Rate (°F/hour):
+                        </div>
+                        <div class="col-md-6">
+                            Target Temperature (°F):
+                        </div>
+                    </div>
+                    <div id="addSegmentContainer" class="col-md-2 offset-md-10 d-flex align-items-end p-0">
+                    <button id="addSegment" type="button" class="btn btn-primary btn-sm addSegment h-100 my-0 ms-2" title="Add Segment">&plus;</button>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="startTime">Start Time (hh:mm):</label>
-                    <input type="time" class="form-control m-0" id="startTime" name="startTime" value="07:00" required>
+                <div class="d-flex w-50 me-2 flex-column">
+                    <div class="form-group">
+                        <label for="scheduleType">Schedule Type:</label>
+                        <select class="form-control" id="scheduleType">
+                            <option value="bisque">Bisque</option>
+                            <option value="glaze">Glaze</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="startTime">Start Time (hh:mm):</label>
+                        <input type="time" class="form-control m-0" id="startTime" name="startTime" value="07:00" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="initialTemp">Initial Temperature (°F):</label>
+                        <input type="number" class="form-control m-0" id="initialTemp" name="initialTemp" value="70" required>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="initialTemp">Initial Temperature (°F):</label>
-                    <input type="number" class="form-control m-0" id="initialTemp" name="initialTemp" value="70" required>
-                </div>
+            </form>
+            <h2>Total Time: <span id="totalTime">0</span> hours</h2>
+        <div id="chart-container" class="w-100 d-flex flex-shrink-1">
+                <div id="chart"></div>
             </div>
-            <div id="segments" class="mb-3 w-50">
-                <!-- Initial segments will be dynamically added here -->
-            </div>
-        </form>
-        <div class="text-center">
-            <button type="button" class="btn btn-primary" id="addSegment">Add Segment</button>
         </div>
-        <h2>Total Time: <span id="totalTime">0</span> hours</h2>
-        <div id="chart-container">
-            <div id="chart"></div>
-        </div>
-    </div>
-    <script src="js/site.js"></script>
-</body>
+        <script src="js/site.js"></script>
+    </body>
 </html>

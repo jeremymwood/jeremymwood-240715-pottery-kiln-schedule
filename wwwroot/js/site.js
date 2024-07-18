@@ -15,7 +15,7 @@
 
     function updateFormValues(scheduleType) {
         const schedule = schedules[scheduleType];
-        $('#segments').empty();
+        //$('#segments').empty();
         schedule.forEach((segment, index) => {
             addSegment(segment.rampRate, segment.targetTemp, index);
         });
@@ -26,25 +26,24 @@
     function addSegment(rampRate = 0, targetTemp = 0, id = new Date().getTime()) {
         console.log("Adding segment:", rampRate, targetTemp);
         const segmentHTML = `
-            <div class="segment form-row mb-2" data-id="${id}">
-                <div class="col-md-5">
-                    <label>Ramp Rate (°F/hour):</label>
+            <div class="segment form-row mb-2 mx-0" data-id="${id}">
+                <div class="col-md-2 my-auto">Ramp #${id + 1}</div>
+                <div class="col-md-4">
                     <input type="number" class="form-control rampRate m-0" value="${rampRate}" required>
                 </div>
-                <div class="col-md-5">
-                    <label>Target Temperature (°F):</label>
+                <div class="col-md-4 col-md-4 pe-0">
                     <input type="number" class="form-control targetTemp m-0" value="${targetTemp}" required>
                 </div>
-                <div class="col-md-2 d-flex align-items-end">
-                    <button type="button" class="btn btn-danger btn-sm removeSegment mb-1" title="Remove Segment">&minus;</button>
+                <div class="col-md-2 d-flex align-items-end p-0">
+                    <button type="button" class="btn btn-danger btn-sm removeSegment my-0 ms-2" title="Remove Segment">&minus;</button>
                 </div>
             </div>`;
-        $('#segments').append(segmentHTML);
+        $('#addSegmentContainer').before(segmentHTML);
 
-        // Remove labels from all but the first segment
-        if ($('#segments .segment').length > 1) {
-            $('#segments .segment:not(:first)').find('label').remove();
-        }
+        //// Remove labels from all but the first segment
+        //if ($('#segments .segment').length > 1) {
+        //    $('#segments .segment:not(:first)').find('label').remove();
+        //}
     }
 
     function removeSegment() {

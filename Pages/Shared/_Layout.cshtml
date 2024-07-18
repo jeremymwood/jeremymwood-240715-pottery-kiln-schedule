@@ -10,8 +10,8 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white box-shadow mb-0">
+            <div class="container py-1">
                 <a class="navbar-brand" asp-area="" asp-page="/Index">_240715_pottery_kiln_schedule</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
@@ -30,14 +30,11 @@
             </div>
         </nav>
     </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
-
-    <footer class="border-top footer text-muted">
-        <div class="container">
+    <main role="main" class="w-100 flex-grow-1">
+        @RenderBody()
+    </main>
+    <footer class="footer text-muted mt-1">
+        <div class="container py-1">
             &copy; 2024 - _240715_pottery_kiln_schedule - <a asp-area="" asp-page="/Privacy">Privacy</a>
         </div>
     </footer>
