@@ -29,17 +29,22 @@
             <div class="segment form-row mb-2" data-id="${id}">
                 <div class="col-md-5">
                     <label>Ramp Rate (°F/hour):</label>
-                    <input type="number" class="form-control rampRate" value="${rampRate}" required>
+                    <input type="number" class="form-control rampRate m-0" value="${rampRate}" required>
                 </div>
                 <div class="col-md-5">
                     <label>Target Temperature (°F):</label>
-                    <input type="number" class="form-control targetTemp" value="${targetTemp}" required>
+                    <input type="number" class="form-control targetTemp m-0" value="${targetTemp}" required>
                 </div>
                 <div class="col-md-2 d-flex align-items-end">
                     <button type="button" class="btn btn-danger btn-sm removeSegment mb-1" title="Remove Segment">&minus;</button>
                 </div>
             </div>`;
         $('#segments').append(segmentHTML);
+
+        // Remove labels from all but the first segment
+        if ($('#segments .segment').length > 1) {
+            $('#segments .segment:not(:first)').find('label').remove();
+        }
     }
 
     function removeSegment() {
